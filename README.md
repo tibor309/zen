@@ -1,5 +1,5 @@
 # ⚡ Zen Browser
-This container allows you to access the [zen browser][zen] trough another web browser using [kasmvnc][kasm]. Zen is a fork of firefox, with a new design, more customizeability, and more privacy features.
+This container allows you to access the [zen browser][zen] trough another web browser using [kasmvnc][kasm]. Zen is a fork of firefox, with a new design, more customizability, and more privacy features.
 
 ## Setup
 
