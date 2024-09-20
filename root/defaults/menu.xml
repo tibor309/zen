@@ -6,7 +6,7 @@
                 <command>/usr/bin/xterm</command>
             </action>
         </item>
-        <item label="Zen Browser">
+        <item label="Zen Browser" icon="/app/zen/browser/chrome/icons/default/default48.png">
             <action name="Execute">
                 <command>/app/zen/zen</command>
             </action>
