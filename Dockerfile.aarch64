@@ -51,7 +51,7 @@ RUN \
     echo "**** install zen browser ****" && \
     curl -o \
         /tmp/zen.linux-generic.tar.bz2 -L \
-        "https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-aarch64.tar.bz2" && \
+        "https://github.com/zen-browser/desktop/releases/download/latest/zen.linux-x86_64.tar.bz2" && \
     tar -xf \
         /tmp/zen.linux-generic.tar.bz2 -C \
         /app && \
