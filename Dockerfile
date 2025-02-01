@@ -55,6 +55,13 @@ RUN \
     tar -xf \
         /tmp/zen.linux-generic.tar.bz2 -C \
         /app && \
+    echo "**** default zen settings ****" && \
+    mkdir -p /app/zen/browser/defaults/preferences && \
+    ZEN_SETTING="/app/zen/browser/defaults/preferences/zen.js" && \
+    echo 'pref("zen.welcome-screen.enabled", false);' > ${ZEN_SETTING} && \
+    echo 'pref("startup.homepage_welcome_url", "");' >> ${ZEN_SETTING} && \
+    echo 'pref("startup.homepage_welcome_url.additional", "");' >> ${ZEN_SETTING} && \
+    echo 'pref("app.update.auto", false);' >> ${ZEN_SETTING} && \
     echo "**** cleanup ****" && \
     rm -rf \
         /config/.cache \
