@@ -15,6 +15,13 @@ ARG DEBIAN_FRONTEND="noninteractive"
 ENV TITLE="Zen Browser"
 
 RUN \
+    echo "**** add icon ****" && \
+    curl -o \
+        /kclient/public/icon.png \
+        https://raw.githubusercontent.com/tibor309/icons/main/icons/zen/zen_dark_light.png && \
+    curl -o \
+        /kclient/public/favicon.ico \
+        https://raw.githubusercontent.com/tibor309/icons/main/icons/zen/zen_dark_light_favicon.ico && \
     echo "**** install package dependencies ****" && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
