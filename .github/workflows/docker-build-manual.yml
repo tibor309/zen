@@ -14,7 +14,23 @@ jobs:
 
       - name: Extract package
         run: |
-          tar -xvf zen.linux-generic.tar.bz2
+          tar -xvf zen.linux-generic.tar.bz2 \
+            zen/zen \
+            zen/dependentlibs.list \
+            zen/libnspr4.so \
+            zen/libplc4.so \
+            zen/libplds4.so \
+            zen/libmozsandbox.so \
+            zen/libgkcodecs.so \
+            zen/liblgpllibs.so \
+            zen/libnssutil3.so \
+            zen/libnss3.so \
+            zen/libsmime3.so \
+            zen/libmozsqlite3.so \
+            zen/libssl3.so \
+            zen/libmozgtk.so \
+            zen/libmozwayland.so \
+            zen/libxul.so
 
       - name: Install required packages
         run: |
