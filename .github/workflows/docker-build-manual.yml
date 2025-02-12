@@ -3,10 +3,22 @@ on:
   [workflow_dispatch]
 
 jobs:
+  get-date:
+    runs-on: ubuntu-24.04
+    outputs:
+      IMG_DATE: ${{ steps.date.outputs.IMG_DATE }}
+    steps:
+      - name: Get current date in RFC 3339
+        id: date
+        run: |
+          IMG_DATE=$(date --rfc-3339=seconds | sed 's/ /T/')
+          echo "IMG_DATE=${IMG_DATE}" >> $GITHUB_OUTPUT
+          echo "The date is $IMG_DATE"
+
   get-version:
     runs-on: ubuntu-24.04
     outputs:
-      PKG_VER: ${{ steps.getver.outputs.PKG_VER }}
+      PKG_VER: ${{ steps.version.outputs.PKG_VER }}
     steps:
       - name: Download latest build
         run: |
@@ -41,7 +53,7 @@ jobs:
             libx11-xcb1
 
       - name: Get package version
-        id: getver
+        id: version
         run: |
           PKG_VER=$(./zen/zen --version | awk '{print $3}')
           echo "PKG_VER=${PKG_VER}" >> $GITHUB_OUTPUT
@@ -49,7 +61,7 @@ jobs:
 
   rebuild:
     runs-on: ubuntu-24.04
-    needs: get-version
+    needs: [get-date, get-version]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -75,7 +87,10 @@ jobs:
           file: ./Dockerfile
           push: true
           provenance: false
-          tags: ghcr.io/tibor309/${{ secrets.DEV_REPO }}:${{ needs.get-version.outputs.PKG_VER }}-amd64
+          build-args: |
+            IMAGE_BUILD_DATE=${{ needs.get-date.outputs.IMG_DATE }}
+          tags: |
+            ghcr.io/tibor309/${{ secrets.DEV_REPO }}:${{ needs.get-version.outputs.PKG_VER }}-amd64
           
       - name: Build image for arm64
         uses: docker/build-push-action@v5
@@ -85,7 +100,10 @@ jobs:
           file: ./Dockerfile.aarch64
           push: true
           provenance: false
-          tags: ghcr.io/tibor309/${{ secrets.DEV_REPO }}:${{ needs.get-version.outputs.PKG_VER }}-arm64
+          build-args: |
+            IMAGE_BUILD_DATE=${{ needs.get-date.outputs.IMG_DATE }}
+          tags: |
+            ghcr.io/tibor309/${{ secrets.DEV_REPO }}:${{ needs.get-version.outputs.PKG_VER }}-arm64
 
       - name: Create image manifest with version tag
         run: |
