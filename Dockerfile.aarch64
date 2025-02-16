@@ -56,13 +56,13 @@ RUN \
         libxi6 \
         libxrandr2 \
         libxrender1 \
-        bzip2 && \
+        xz-utils && \
     echo "**** install zen browser ****" && \
     curl -o \
-        /tmp/zen.linux-generic.tar.bz2 -L \
-        "https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-aarch64.tar.bz2" && \
+        /tmp/zen.linux-aarch64.tar.xz -L \
+        "https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-aarch64.tar.xz" && \
     tar -xf \
-        /tmp/zen.linux-generic.tar.bz2 -C \
+        /tmp/zen.linux-aarch64.tar.xz -C \
         /app && \
     echo "**** default zen settings ****" && \
     mkdir -p /app/zen/browser/defaults/preferences && \
