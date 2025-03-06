@@ -1,10 +1,11 @@
-# ⭕ Zen Browser
+# 🧿 Zen Browser
 This container allows you to access the [zen browser][zen] trough another web browser using [kasmvnc][kasm]. Zen is a fork of firefox, with a new design, more customizability, and more privacy features.
 
-## Setup
-
 > [!WARNING]  
-> Zen is still in **beta**! If you experience bugs or other issues, make sure to [report][rep] them to the zen team!
+> - The zen browser is still in **beta**! If you experience bugs or other issues, make sure to [report][rep] them to the zen team!
+> - There are no automatic builds for this image yet! If you need an updated version, you'll need to rebuild the image yourself!
+
+## Setup
 
 To set up the container, you can either use docker-compose or the docker cli. You can also use options and additional settings/mods from linuxserver.io.
 And to update the container, simply pull the latest image, and redeploy it.
