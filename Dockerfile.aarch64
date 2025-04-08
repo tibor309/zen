@@ -65,12 +65,19 @@ RUN \
         /tmp/zen.linux-aarch64.tar.xz -C \
         /app && \
     echo "**** default zen settings ****" && \
-    mkdir -p /app/zen/browser/defaults/preferences && \
-    ZEN_SETTING="/app/zen/browser/defaults/preferences/zen.js" && \
-    echo 'pref("zen.welcome-screen.enabled", false);' > ${ZEN_SETTING} && \
+    ZEN_SETTING_DIR="/app/zen/browser/defaults/preferences" \
+    ZEN_SETTING="${ZEN_SETTING_DIR}/zen.js" && \
+    echo 'pref("datareporting.policy.firstRunURL", "");' > ${ZEN_SETTING} && \
+    echo 'pref("datareporting.policy.dataSubmissionEnabled", false);' >> ${ZEN_SETTING} && \
+    echo 'pref("datareporting.healthreport.service.enabled", false);' >> ${ZEN_SETTING} && \
+    echo 'pref("datareporting.healthreport.uploadEnabled", false);' >> ${ZEN_SETTING} && \
+    echo 'pref("browser.aboutwelcome.enabled", false);' >> ${ZEN_SETTING} && \
+    echo 'pref("zen.welcome-screen.seen", true);' > ${ZEN_SETTING} && \
     echo 'pref("startup.homepage_welcome_url", "");' >> ${ZEN_SETTING} && \
     echo 'pref("startup.homepage_welcome_url.additional", "");' >> ${ZEN_SETTING} && \
     echo 'pref("app.update.auto", false);' >> ${ZEN_SETTING} && \
+    echo 'pref("app.update.enable", false);' >> ${ZEN_SETTING} && \
+    echo 'pref("browser.shell.checkDefaultBrowser", false);' >> ${ZEN_SETTING} && \
     echo "**** cleanup ****" && \
     rm -rf \
         /config/.cache \
