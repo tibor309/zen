@@ -67,6 +67,7 @@ RUN \
     echo "**** default zen settings ****" && \
     ZEN_SETTING_DIR="/app/zen/browser/defaults/preferences" \
     ZEN_SETTING="${ZEN_SETTING_DIR}/zen.js" && \
+    mkdir -p ${ZEN_SETTING_DIR} && \
     echo 'pref("datareporting.policy.firstRunURL", "");' > ${ZEN_SETTING} && \
     echo 'pref("datareporting.policy.dataSubmissionEnabled", false);' >> ${ZEN_SETTING} && \
     echo 'pref("datareporting.healthreport.service.enabled", false);' >> ${ZEN_SETTING} && \
